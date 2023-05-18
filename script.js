@@ -1,16 +1,16 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-var upperCase = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","R","S","T"];
-  var lowerCase = ["a","b","c"];
-  var numbers = ["0","2","3"];
-  var specialCharacters = ["!","$","%"];
+var upperCase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P","Q", "R", "S", "T","U","V","W","X","Y","Z"];
+var lowerCase = ["a", "b", "c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+var numbers = ["0", "1","2", "3","4","5","6","7","8","9"];
+var specialCharacters = ["!", "~","@", "%","#","$","^","&","*","(",")","-","_","=","+","/","?","<",">","{","}","[","]"];
 
 function getPasswordOptions() {
 
   // Variable to store length of password from user input
   var length = parseInt(
     prompt('How many characters would you like your password to contain?')
-    
+
   );
 
 
@@ -61,46 +61,49 @@ function generatePassword() {
 
   var options = getPasswordOptions();
   // Variable to store password as it's being concatenated
-  
-  var result = [ ];
+
+  var result = [];
 
   // Array to store types of characters to include in password
-  var possibleCharacters = [ ];
+  var possibleCharacters = [];
 
   // Array to contain one of each type of chosen character to ensure each will be used
-  var guaranteedCharacters = [ ];
+  var guaranteedCharacters = [];
 
   // Check if an options object exists, if not exit the function
   if (!options) return null;
 
-// Conditional statement that adds array of special characters into array of possible characters based on user input
-// Push new random special character to guaranteedCharacters
-if (options.hasSpecialCharacters) {
-  possibleCharacters = possibleCharacters.concat(specialCharacters);
-  guaranteedCharacters.push(getRandom(specialCharacters));
-}
+  // Conditional statement that adds array of special characters into array of possible characters based on user input
+  // Push new random special character to guaranteedCharacters
+  if (options.hasSpecialCharacters) {
+    possibleCharacters = possibleCharacters.concat(specialCharacters);
+    guaranteedCharacters.push(getRandom(specialCharacters));
+  }
 
- if(options.hasNumbers){ possibleCharacters = possibleCharacters.concat(numbers);
-  guaranteedCharacters.push(getRandom(numbers));
-}
+  if (options.hasNumbers) {
+    possibleCharacters = possibleCharacters.concat(numbers);
+    guaranteedCharacters.push(getRandom(numbers));
+  }
 
-  if (options.hasUperCase) { possibleCharacters = possibleCharacters.concat(upperCase);
-  guaranteedCharacters.push(getRandom(upperCase));
-}
-if (options.haslowerCase) {  possibleCharacters = possibleCharacters.concat(lowerCase);
-  guaranteedCharacters.push(getRandom(lowerCase));
-}
-for ( var i = 0; i < options.length ; i++) {
-  var possibleCharacter = getRandom(possibleCharacters);
-  result.push(possibleCharacter);
-}
-for ( var i = 0 ; i < guaranteedCharacters.length ; i++) {
-result[i]=guaranteedCharacters[i];
-}
+  if (options.hasUperCase) {
+    possibleCharacters = possibleCharacters.concat(upperCase);
+    guaranteedCharacters.push(getRandom(upperCase));
+  }
+  if (options.haslowerCase) {
+    possibleCharacters = possibleCharacters.concat(lowerCase);
+    guaranteedCharacters.push(getRandom(lowerCase));
+  }
+  for (var i = 0; i < options.length; i++) {
+    var possibleCharacter = getRandom(possibleCharacters);
+    result.push(possibleCharacter);
+  }
+  for (var i = 0; i < guaranteedCharacters.length; i++) {
+    result[i] = guaranteedCharacters[i];
+  }
 
-// Transform the result into a string and pass into writePassword
-return result.join('');
-  
+  // Transform the result into a string and pass into writePassword
+  return result.join('');
+
 }
 
 // Write password to the #password input
