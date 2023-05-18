@@ -57,7 +57,7 @@ function getPasswordOptions() {
 function getRandom(arr) {
   var randIndex = Math.floor(Math.random() * arr.length);
   var randElement = arr[randIndex];
-
+  var randIndex = 10;
   return randElement;
 }
 
@@ -66,11 +66,11 @@ function generatePassword() {
 
   var options = getPasswordOptions();
   // Variable to store password as it's being concatenated
-  var hasUperCase = ["ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
-  var haslowerCase = ["abcdefghijklmnopqrstuvwxyz"];
-  var hasNumbers = "0123456789";
-  var hasSpecialCharacters = "~!@#$%^&*()_-+=\|][}{?/";
-  var result = [hasSpecialCharacters, hasNumbers, hasUperCase, haslowerCase];
+  var hasUperCase = ["A","B","C","D","E","F","G","H","I","J","K","L","M"];
+  var haslowerCase = ["a","b","c"];
+  var hasNumbers = ["0","2","3"];
+  var hasSpecialCharacters = ["!","$","%"];
+  var result = [getRandom(hasSpecialCharacters),getRandom(hasNumbers), getRandom(hasUperCase),getRandom(haslowerCase),getRandom(hasSpecialCharacters),getRandom(hasNumbers), getRandom(hasUperCase),getRandom(haslowerCase)];
 
   // Array to store types of characters to include in password
   var possibleCharacters = ["hasSpecialCharacters", "hasNumbers", "hasUperCase", "haslowerCase"];
