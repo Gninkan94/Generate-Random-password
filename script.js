@@ -1,22 +1,18 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-
-
-
-//---- Let me start by saying this code is totally optional and if you want to go in a completely different direction I support it. Go with your gut and what works for you because it will help you figure out your thought process.Let us know if you have any questions and don't be afraid to start a dialogue with fellow students!  ----------------------- Delete this before you push your code to github LOL 
-
-
-
+var upperCase = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","R","S","T"];
+  var lowerCase = ["a","b","c"];
+  var numbers = ["0","2","3"];
+  var specialCharacters = ["!","$","%"];
 
 function getPasswordOptions() {
 
   // Variable to store length of password from user input
   var length = parseInt(
-    prompt('How many characters would you like your password to contain?'),
-    10
+    prompt('How many characters would you like your password to contain?')
+    
   );
 
-  // YOU WILL NEED MORE CODE IN HERE!~!!!!!!!!-----------------------------------
 
   var hasUperCase = confirm(
     'Click OK to confirm including uper case characters.'
@@ -57,7 +53,6 @@ function getPasswordOptions() {
 function getRandom(arr) {
   var randIndex = Math.floor(Math.random() * arr.length);
   var randElement = arr[randIndex];
-  var randIndex = 10;
   return randElement;
 }
 
@@ -66,17 +61,14 @@ function generatePassword() {
 
   var options = getPasswordOptions();
   // Variable to store password as it's being concatenated
-  var hasUperCase = ["A","B","C","D","E","F","G","H","I","J","K","L","M"];
-  var haslowerCase = ["a","b","c"];
-  var hasNumbers = ["0","2","3"];
-  var hasSpecialCharacters = ["!","$","%"];
-  var result = [getRandom(hasSpecialCharacters),getRandom(hasNumbers), getRandom(hasUperCase),getRandom(haslowerCase),getRandom(hasSpecialCharacters),getRandom(hasNumbers), getRandom(hasUperCase),getRandom(haslowerCase)];
+  
+  var result = [ ];
 
   // Array to store types of characters to include in password
-  var possibleCharacters = ["hasSpecialCharacters", "hasNumbers", "hasUperCase", "haslowerCase"];
+  var possibleCharacters = [ ];
 
   // Array to contain one of each type of chosen character to ensure each will be used
-  var guaranteedCharacters = ["hasNumbers", "hasSpecialCharacters", "hasUperCase", "haslowerCase"];
+  var guaranteedCharacters = [ ];
 
   // Check if an options object exists, if not exit the function
   if (!options) return null;
@@ -84,14 +76,26 @@ function generatePassword() {
 // Conditional statement that adds array of special characters into array of possible characters based on user input
 // Push new random special character to guaranteedCharacters
 if (options.hasSpecialCharacters) {
-  possibleCharacters = possibleCharacters.concat(hasSpecialCharacters);
-  guaranteedCharacters.push(getRandom(hasSpecialCharacters));
-  possibleCharacters = possibleCharacters.concat(hasNumbers);
-  guaranteedCharacters.push(getRandom(hasNumbers));
-  possibleCharacters = possibleCharacters.concat(hasUperCase);
-  guaranteedCharacters.push(getRandom(hasUperCase));
-  possibleCharacters = possibleCharacters.concat(haslowerCase);
-  guaranteedCharacters.push(getRandom(haslowerCase));
+  possibleCharacters = possibleCharacters.concat(specialCharacters);
+  guaranteedCharacters.push(getRandom(specialCharacters));
+}
+
+ if(options.hasNumbers){ possibleCharacters = possibleCharacters.concat(numbers);
+  guaranteedCharacters.push(getRandom(numbers));
+}
+
+  if (options.hasUperCase) { possibleCharacters = possibleCharacters.concat(upperCase);
+  guaranteedCharacters.push(getRandom(upperCase));
+}
+if (options.haslowerCase) {  possibleCharacters = possibleCharacters.concat(lowerCase);
+  guaranteedCharacters.push(getRandom(lowerCase));
+}
+for ( var i = 0; i < options.length ; i++) {
+  var possibleCharacter = getRandom(possibleCharacters);
+  result.push(possibleCharacter);
+}
+for ( var i = 0 ; i < guaranteedCharacters.length ; i++) {
+result[i]=guaranteedCharacters[i];
 }
 
 // Transform the result into a string and pass into writePassword
